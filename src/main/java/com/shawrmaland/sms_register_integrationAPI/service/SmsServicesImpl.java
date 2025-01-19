@@ -25,11 +25,11 @@ public class SmsServicesImpl implements SmsServices {
 	@Autowired
 	RestTemplate restTemplate;
 	
-	@Value("${alt.bearer}")
-	private String altBearer;
+	@Value("${sms.bearer}")
+	private String smsBearer;
 
-	@Value("${alt.url}")
-	private String altUrl;
+	@Value("${sms.url}")
+	private String smsUrl;
 
 	@Value("${com.from}")
 	private String comFrom;
@@ -45,7 +45,7 @@ public class SmsServicesImpl implements SmsServices {
 		
 
 		// Create URL
-		String url = urlBuilder(altUrl);
+		String url = urlBuilder(smsUrl);
 		System.out.println("URL: " + url);
 
 		// Create headers
@@ -85,14 +85,14 @@ public class SmsServicesImpl implements SmsServices {
 	 * 
 	 * @author ALL
 	 * @since JDK17
-	 * @return String {@alt}
+	 * @return String {@sms}
 	 **/
 	private String urlBuilder(String althryaUrl) {
 		/************
-		 * Sample URL for TST environment: https:**************************
+		 * Sample sms URL for TST environment: https:**************************
 		 *********************/
 		StringBuilder uri = new StringBuilder(250);
-		uri.append(altUrl);
+		uri.append(smsUrl);
 		uri.append("/api");
 		uri.append("/v1");
 		uri.append("/campaign");
@@ -107,7 +107,7 @@ public class SmsServicesImpl implements SmsServices {
 	private HttpHeaders createHeaders() {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED);
-		headers.setBearerAuth(altBearer);
+		headers.setBearerAuth(smsBearer);
 		return headers;
 	}
 

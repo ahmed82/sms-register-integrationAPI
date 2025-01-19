@@ -36,20 +36,22 @@ public class WebController {
 	 * @apiNote TEST API to Get the PromoPoint JSON Object. To be used in the POST method
 	 * @return @PromoPoint JSO object
 	 */
-	//@PostMapping
-	@GetMapping(path = "/sms")
-	public PromoPoint sendSMSPromo() {
-		
+
+	@PostMapping(path = "/promo")
+	public ResponseEntity<?> sendSMSPromo(@RequestBody PromoPoint promoPoint) {
 		//TODO add the implementation for the Register Company based on the coming requirement...
-		
-		PromoPoint promoPoint = new PromoPoint();
-		promoPoint.setPhoneNumber("9647503030xxx");
-		promoPoint.setMessage("Test SMS API from the Java Restful API ;) Ahmed -Cheers!!!");
-		return promoPoint;
-		
+		 smsServices.sendSMSMessege(promoPoint);
+		return new ResponseEntity<String>( HttpStatus.OK);
 	}
 	
-	@PostMapping(path = "/points")
+	
+	/***
+	 * 
+	 * promoPoint.setPhoneNumber("9647503030xxx"); promoPoint.
+	 * setMessage("Test SMS API from the Java Restful API ;) Ahmed -Cheers!!!");
+	 * @return ResponseEntity;
+	 */
+	@PostMapping(path = "/sms")
 	public ResponseEntity<?> recivePromoPoints(@RequestBody PromoPoint promoPoint ){
 		
 		String responseBody = smsServices.sendSMSMessege(promoPoint);
