@@ -11,3 +11,14 @@
     "message_text": "Test SMS API from the Java Restful API ;) Ahmed -Cheers!!!"
 }
 ```
+## Get Total points
+```
+curl --location --request GET 'https://api.foodics.com/v5/loyalty_transactions?filter[customer_id]={UUID}' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLvRH...........' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json'
+```
+
+
+https://apidocs.foodics.com/core/resources/loyalty.html#list-loyalty-transactions
+https://apidocs.foodics.com/core/webhooks.html#what-is-a-webhook
